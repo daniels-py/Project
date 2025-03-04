@@ -30,15 +30,31 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+# apps por defecto de mi Django
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+# apps de terceros que voy a instalar
+THIRD_PARTY_APPS = [
+
+]
+
+
+# mis apps locales
+LOCAL_APPS = [
     'apps.users',
 ]
+
+# esto es para unir todas las apps en una sola lista
+INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,8 +92,12 @@ WSGI_APPLICATION = 'agcontrol.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql', # conexion al gestor de base de datos en este caso postgresql
+        'NAME':'test',# nobre de la base de datos
+        'USER': 'postgres',# usuario de la base de datos
+        'PASSWORD': '0000',# contraseña de la base de datos
+        'HOST': '127.0.0.1',# host donde esta la base de datos
+        'PORT': '5432',# puerto de la base de datos
     }
 }
 
@@ -99,6 +119,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+# validacion de usaurio personalizada don django
+
+AUTH_USER_MODEL = 'users.User'
 
 
 # Internationalization
