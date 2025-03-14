@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +44,8 @@ DEFAULT_APPS = [
 # apps de terceros que voy a instalar
 THIRD_PARTY_APPS = [
 
+    'rest_framework',  # Agregamos Django REST Framework
+    'rest_framework_simplejwt',  # Agregamos Simple JWT  para poder hacer la prueba  
 ]
 
 
@@ -55,6 +58,20 @@ LOCAL_APPS = [
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
+#configuracion de django rest
+ 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+# configuracion de simple jwt
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),  # Token de acceso dura 30 min
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  # Token de refresco dura 7 días
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
