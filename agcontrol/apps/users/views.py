@@ -7,26 +7,26 @@ from .serializers import UserSerializer  # Importamos el serializador del usuari
 # Obtener el modelo de usuario definido en models.py
 User = get_user_model()
 
-# 🔹 Vista para Registrar un Usuario
+#  Vista para Registrar un Usuario
 class RegisterView(generics.CreateAPIView):  # Hereda de CreateAPIView, que se usa para crear registros
     queryset = User.objects.all()  # Define la consulta de usuarios existentes (requerido por CreateAPIView)
     serializer_class = UserSerializer  # Usa el serializador para validar y crear usuarios
     permission_classes = [permissions.AllowAny]  # Permite que cualquier persona acceda a esta vista (sin autenticación)
 
     """
-    🔹 ¿Cómo funciona esta vista?
+     ¿Cómo funciona esta vista?
     - `CreateAPIView` maneja automáticamente el método POST para crear un nuevo usuario.
     - Se usa el `UserSerializer` para validar los datos y llamar al método `create()`.
     - Al no definir manualmente `post()`, Django REST Framework lo maneja automáticamente.
     """
 
-# 🔹 Vista para Ver el Perfil del Usuario Autenticado
+# Vista para Ver el Perfil del Usuario Autenticado
 class ProfileView(APIView):  # Hereda de APIView para definir una vista más personalizada
     permission_classes = [permissions.IsAuthenticated]  # Solo usuarios autenticados pueden acceder
 
     def get(self, request):  # Define el método GET para obtener los datos del usuario autenticado
         """
-        🔹 ¿Qué hace este método?
+         ¿Qué hace este método?
         - Obtiene el usuario autenticado (`request.user`).
         - Devuelve los datos del usuario en formato JSON.
         - Agrega un mensaje de bienvenida personalizado.
@@ -40,3 +40,9 @@ class ProfileView(APIView):  # Hereda de APIView para definir una vista más per
             'phone_number': user.phone_number,
             'role': user.role
         })
+
+
+
+class listUsers(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

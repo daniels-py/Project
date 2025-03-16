@@ -7,5 +7,8 @@ pip install djangorestframework-simplejwt
 pip install psycopg2
 
 
+python -m venv venv
+.\venv\Scripts\Activate 
+
 
 ```
