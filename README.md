@@ -8,7 +8,13 @@ pip install psycopg2
 
 
 python -m venv venv
-.\venv\Scripts\Activate 
+.\venv\Scripts\Activate
+
+
+linux
+
+source venv/bin/activate
+
 
 
 ```
