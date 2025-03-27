@@ -6,6 +6,8 @@ pip install djangorestframework
 pip install djangorestframework-simplejwt
 pip install psycopg2
 
+# instalar todo directamente
+pip install django djangorestframework djangorestframework-simplejwt psycopg2
 
 ```
 
