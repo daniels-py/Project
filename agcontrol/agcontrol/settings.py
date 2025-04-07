@@ -53,6 +53,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'apps.users',
     'apps.products',
+    'apps.core',
 ]
 
 # esto es para unir todas las apps en una sola lista
