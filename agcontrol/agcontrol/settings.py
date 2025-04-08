@@ -53,6 +53,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'apps.users',
     'apps.products',
+    'apps.inventory',
     'apps.core',
 ]
 
@@ -112,7 +113,7 @@ WSGI_APPLICATION = 'agcontrol.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', # conexion al gestor de base de datos en este caso postgresql
-        'NAME':'proyecto_a',# nobre de la base de datos
+        'NAME':'prueba',# nobre de la base de datos
         'USER': 'postgres',# usuario de la base de datos
         'PASSWORD': '0000',# contraseña de la base de datos
         'HOST': '127.0.0.1',# host donde esta la base de datos
