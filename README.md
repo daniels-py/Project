@@ -1,4 +1,8 @@
-#### 1. Dependencias necesarias para el proyecto:
+
+
+
+
+#### 1. Documentacion y dependencias de mi projecto:
 
 ```bash
 pip install django
