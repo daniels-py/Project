@@ -22,4 +22,5 @@ urlpatterns = [
     path('users/', include('apps.users.urls')),  # Incluimos las urls de la app users
     path('products/', include('apps.products.urls')),  # Incluimos las urls de la app products
     path('core/', include('apps.core.urls')),# Incluimos las ulrs de core
+    path('inventario/',include('apps.inventory.urls')),
 ]

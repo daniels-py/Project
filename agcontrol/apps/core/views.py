@@ -33,7 +33,7 @@ class listCategoria(generics.ListCreateAPIView):
     serializer_class = CategoriaSerializer
     permission_classes = [IsAdminUser]
 
-class listPresentacion(generics.ListAPIView):
+class listPresentacion(generics.ListCreateAPIView):
     queryset = Presentacion.objects. all()
     serializer_class = PresentacionSerializer
     permission_classes =  [IsAdminUser]
