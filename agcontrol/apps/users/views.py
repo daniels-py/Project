@@ -34,7 +34,6 @@ class ProfileView(APIView):  # Hereda de APIView para definir una vista más per
         user = request.user  # Obtiene el usuario que está haciendo la solicitud
         return Response({  # Retorna un JSON con los datos del usuario
             "message": f"¡Bienvenido, {user.username}!",  # Mensaje de bienvenida
-            'id': user.id,
             'username': user.username,
             'email': user.email,
             'phone_number': user.phone_number,
