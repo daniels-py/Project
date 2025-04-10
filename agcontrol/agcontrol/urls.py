@@ -20,7 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('apps.users.urls')),  # Incluimos las urls de la app users
-    path('products/', include('apps.products.urls')),  # Incluimos las urls de la app products
     path('core/', include('apps.core.urls')),# Incluimos las ulrs de core
-    path('inventario/',include('apps.inventory.urls')),
+    path('products/', include('apps.products.urls')),  # Incluimos las urls de la app products
+    path('inventario/',include('apps.inventory.urls')),# uncluimos las urls de inventario
 ]
