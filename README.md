@@ -2,7 +2,7 @@
 
 
 
-#### 1. Documentacion y dependencias de mi projecto:
+#### 1. Documentacion y dependencias de mi projecto ajuste de librerias y dependencias:
 
 ```bash
 pip install django
