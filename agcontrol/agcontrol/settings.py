@@ -46,6 +46,9 @@ THIRD_PARTY_APPS = [
 
     'rest_framework',  # Agregamos Django REST Framework
     'rest_framework_simplejwt',  # Agregamos Simple JWT  para poder hacer la prueba  
+    'corsheaders', # Agregramos para navegadores modernos permitan que apps como React consuman tus APIs
+
+
 ]
 
 
@@ -84,7 +87,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',# nueva para el consumo de apis
+
 ]
+
+# esto solo los voy a usar en desarrollo para en produccion
+# tendre que utilizar un array que los puertos para mas control
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 ROOT_URLCONF = 'agcontrol.urls'
 

@@ -9,6 +9,9 @@ pip install django
 pip install djangorestframework
 pip install djangorestframework-simplejwt
 pip install psycopg2
+pip install django-cors-headers
+
+
 
 # instalar todo directamente
 pip install django djangorestframework djangorestframework-simplejwt psycopg2
