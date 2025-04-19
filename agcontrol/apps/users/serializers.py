@@ -1,28 +1,35 @@
-from rest_framework import serializers  # Importa el módulo de serialización de DRF
-from django.contrib.auth import get_user_model  # Permite obtener el modelo de usuario activo en el proyecto
+from rest_framework import serializers
+from django.contrib.auth import get_user_model
 
-# Obtiene el modelo de usuario definido en models.py
 User = get_user_model()
 
-class UserSerializer(serializers.ModelSerializer):  # Se extiende de ModelSerializer para automatizar el proceso de serialización
+class UserSerializer(serializers.ModelSerializer):
+    password2 = serializers.CharField(write_only=True)  # Campo adicional para confirmar la contraseña
+
     class Meta:
-        model = User  # Se usa el modelo de usuario personalizado
-        fields = ['id', 'username', 'email', 'phone_number', 'role', 'password']  # Campos que se incluirán en la serialización
-        extra_kwargs = {'password': {'write_only': True}}  # Hace que la contraseña solo sea visible al escribirla (no se muestra en respuestas)
+        model = User
+        fields = ['id', 'username', 'email', 'phone_number', 'role', 'password', 'password2']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
 
-    def create(self, validated_data):  # Sobreescribe el método para personalizar la creación del usuario
+    def validate(self, data):
         """
-        Este método se encarga de crear un nuevo usuario en la base de datos.
-        Se usa `create_user()` en lugar de `create()` porque `create_user()` 
-        maneja correctamente el hash de la contraseña.
+        Verifica que las dos contraseñas coincidan.
         """
+        if data['password'] != data['password2']:
+            raise serializers.ValidationError("Las contraseñas no coinciden.")
+        return data
+
+    def create(self, validated_data):
+        # Quitamos password2 ya que no se usa en la creación del usuario
+        validated_data.pop('password2')
+
         user = User.objects.create_user(
-            username=validated_data['username'],  # Asigna el nombre de usuario
-            email=validated_data['email'],  # Asigna el email
-            phone_number=validated_data.get('phone_number', ''),  # Asigna el número de teléfono si se proporciona, sino lo deja vacío
-            role=validated_data.get('role', 'user'),  # Asigna el rol, si no se proporciona usa 'user' por defecto
-            password=validated_data['password']  # Se asigna la contraseña, `create_user` la encripta automáticamente
+            username=validated_data['username'],
+            email=validated_data['email'],
+            phone_number=validated_data.get('phone_number', ''),
+            role=validated_data.get('role', 'user'),
+            password=validated_data['password']
         )
-        return user  # Devuelve el usuario creado
-
-
+        return user
