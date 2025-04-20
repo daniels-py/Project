@@ -12,6 +12,9 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=15, blank=True)
     role = models.CharField(max_length=5, choices=ROLE_CHOICES, default='user')
 
+    USERNAME_FIELD = 'email'  # Define el campo que se usará para iniciar sesión
+    REQUIRED_FIELDS = ['username']  # Campos requeridos al crear un usuario
+
     def __str__(self):
         return f"{self.username} - {self.email}"
     

@@ -3,6 +3,9 @@ from django.contrib.auth import get_user_model  # Obtiene el modelo de usuario a
 from rest_framework.response import Response  # Permite devolver respuestas JSON en las vistas
 from rest_framework.views import APIView  # Se usa para crear vistas basadas en clases
 from .serializers import UserSerializer  # Importamos el serializador del usuario
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
+
 
 # Obtener el modelo de usuario definido en models.py
 User = get_user_model()
@@ -45,3 +48,7 @@ class ProfileView(APIView):  # Hereda de APIView para definir una vista más per
 class listUsers(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
