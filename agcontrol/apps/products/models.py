@@ -16,7 +16,9 @@ class Producto(models.Model):
     presentacion = models.ForeignKey(Presentacion, on_delete=models.PROTECT)
 
     es_coloreable = models.BooleanField(default=False)
-
+    
+    imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
+    
     def __str__(self):
         return f"{self.nombre} - {self.marca.nombre}"
 
