@@ -10,6 +10,7 @@ pip install djangorestframework
 pip install djangorestframework-simplejwt
 pip install psycopg2
 pip install django-cors-headers
+pip install pillow
 
 
 
