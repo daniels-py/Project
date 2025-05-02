@@ -124,17 +124,25 @@ WSGI_APPLICATION = 'agcontrol.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', # conexion al gestor de base de datos en este caso postgresql
-        'NAME':'prueba',# nobre de la base de datos
-        'USER': 'postgres',# usuario de la base de datos
-        'PASSWORD': '0000',# contraseña de la base de datos
-        'HOST': '127.0.0.1',# host donde esta la base de datos
-        'PORT': '5432',# puerto de la base de datos
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'prueba',        # Base de datos en la instancia 1
+        'USER': 'postgres',
+        'PASSWORD': '0000',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',          # Primera instancia
+    },
+    'postgres_segunda': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'agcontol', # Base de datos en la instancia 2
+        'USER': 'postgres',
+        'PASSWORD': 'ct7657',
+        'HOST': '179.61.15.10',
+        'PORT': '5433',           # Segunda instancia PostgreSQL
     }
 }
+
 
 
 # Password validation
