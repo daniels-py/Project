@@ -43,12 +43,9 @@ class ProfileView(APIView):  # Hereda de APIView para definir una vista más per
             'role': user.role
         })
 
-
-
 class listUsers(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
