@@ -40,7 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+class EmailLoginTokenSerializer(TokenObtainPairSerializer):
     username_field = User.EMAIL_FIELD  # <- Esto indica que usaremos el campo email
 
     def validate(self, attrs):

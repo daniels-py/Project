@@ -4,7 +4,7 @@ from rest_framework.response import Response  # Permite devolver respuestas JSON
 from rest_framework.views import APIView  # Se usa para crear vistas basadas en clases
 from .serializers import UserSerializer  # Importamos el serializador del usuario
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomTokenObtainPairSerializer
+from .serializers import EmailLoginTokenSerializer
 
 
 # Obtener el modelo de usuario definido en models.py
@@ -37,6 +37,7 @@ class ProfileView(APIView):  # Hereda de APIView para definir una vista más per
         user = request.user  # Obtiene el usuario que está haciendo la solicitud
         return Response({  # Retorna un JSON con los datos del usuario
             "message": f"¡Bienvenido, {user.username}!",  # Mensaje de bienvenida
+            "id":  user.id,
             'username': user.username,
             'email': user.email,
             'phone_number': user.phone_number,
@@ -47,5 +48,5 @@ class listUsers(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class CustomTokenObtainPairView(TokenObtainPairView):
-    serializer_class = CustomTokenObtainPairSerializer
+class EmailLoginTokenSerializer(TokenObtainPairView):
+    serializer_class = EmailLoginTokenSerializer

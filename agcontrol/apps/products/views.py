@@ -7,4 +7,3 @@ from permissions.permissions import IsAdminUser  # Aquí mi permios personalizad
 class ProductoListCreateView(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
-    permission_classes = [IsAdminUser]  # Solo admins pueden acceder
