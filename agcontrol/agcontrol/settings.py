@@ -49,7 +49,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',  # Agregamos Django REST Framework
     'rest_framework_simplejwt',  # Agregamos Simple JWT  para poder hacer la prueba  
     'corsheaders', # Agregramos para navegadores modernos permitan que apps como React consuman tus APIs
-
+    'rest_framework_simplejwt.token_blacklist', # para manejar el cierre de sesión y la revocación de tokens
 
 ]
 
@@ -77,9 +77,21 @@ REST_FRAMEWORK = {
 # configuracion de simple jwt
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),  # Token de acceso dura 30 min
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  # Token de refresco dura 7 días
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    
+    # 👇 Estas dos son importantes para que se puedan invalidar (blacklist) los refresh tokens:
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+
+    # Opcional pero recomendable
+    'AUTH_HEADER_TYPES': ('Bearer',),
+
+    # Si quieres ver más información en los tokens (opcional)
+    # 'USER_ID_FIELD': 'id',
+    # 'USER_ID_CLAIM': 'user_id',
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

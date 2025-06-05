@@ -1,11 +1,12 @@
-from rest_framework import generics, permissions  # Importamos clases genéricas de DRF y permisos para la API
+from rest_framework import status, generics, permissions  # Importamos clases genéricas de DRF y permisos para la API
 from django.contrib.auth import get_user_model  # Obtiene el modelo de usuario activo en el proyecto
 from rest_framework.response import Response  # Permite devolver respuestas JSON en las vistas
 from rest_framework.views import APIView  # Se usa para crear vistas basadas en clases
 from .serializers import UserSerializer  # Importamos el serializador del usuario
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import EmailLoginTokenSerializer
-
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
 
 # Obtener el modelo de usuario definido en models.py
 User = get_user_model()
@@ -50,3 +51,18 @@ class listUsers(generics.ListCreateAPIView):
 
 class EmailLoginTokenSerializer(TokenObtainPairView):
     serializer_class = EmailLoginTokenSerializer
+
+
+
+class LogoutView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data.get("refresh")
+            token = RefreshToken(refresh_token)
+            token.blacklist()  # Marca el token como revocado   
+            return Response({"message": "Logout exitoso"}, status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response({"error al cerrar": str(e)}, status=status.HTTP_400_BAD_REQUEST) 
+       
