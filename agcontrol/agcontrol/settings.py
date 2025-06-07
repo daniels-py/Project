@@ -77,7 +77,7 @@ REST_FRAMEWORK = {
 # configuracion de simple jwt
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     
     # 👇 Estas dos son importantes para que se puedan invalidar (blacklist) los refresh tokens:
