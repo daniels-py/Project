@@ -1,9 +1,14 @@
+# Crear el contenido completo del archivo README.md con el formato solicitado
 
+readme_content = """# 📦 Proyecto Django - Punto de Venta e Inventario
 
+Bienvenido a tu sistema de gestión para categorías, marcas, productos, inventario, ventas y compras en Django + PostgreSQL.
 
+---
 
-#### 1. Documentacion y dependencias de mi projecto ajuste de librerias y dependencias:
-
+>[!TIP]
+> ### 1. 📦 Instalación de dependencias
+> Puedes instalar las librerías necesarias de forma individual:
 ```bash
 pip install django
 pip install djangorestframework
@@ -13,11 +18,9 @@ pip install django-cors-headers
 pip install pillow
 
 
+pip install django djangorestframework djangorestframework-simplejwt psycopg2 django-cors-headers pillow
 
-# instalar todo directamente
-pip install django djangorestframework djangorestframework-simplejwt psycopg2
 
-```
 
 #### 2. Creacion de activiacion de entorno virtaul para windows y linux 
 
