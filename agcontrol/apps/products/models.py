@@ -31,5 +31,5 @@ class CaracteristicaColor(models.Model):
     descripcion = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.producto.nombre} - {self.descripcion}"
+        return f"{self.producto.marca} - {self.producto.nombre} - {self.descripcion} - {self.codigo_color}"
 
