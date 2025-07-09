@@ -13,7 +13,7 @@ Bienvenido a tu sistema de gestión para categorías, marcas, productos, inventa
 pip install django
 pip install djangorestframework
 pip install djangorestframework-simplejwt
-pip install psycopg2
+pip install psycopg2-binary
 pip install django-cors-headers
 pip install pillow
 
