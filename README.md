@@ -18,10 +18,6 @@ pip install django-cors-headers
 pip install pillow
 
 
-pip install django djangorestframework djangorestframework-simplejwt psycopg2 django-cors-headers pillow
-
-
-
 #### 2. Creacion de activiacion de entorno virtaul para windows y linux 
 
 
