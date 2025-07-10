@@ -1,11 +1,7 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import ventaListCreateView, DetalleVentaListCreateView
-
-router = DefaultRouter()
-router.register(r'ventas', ventaListCreateView, basename='ventas')
-router.register(r'detalle-ventas', DetalleVentaListCreateView, basename='detalle-')
+from django.urls import path
+from .views import CrearVentaView, MisVentasView
 
 urlpatterns = [
-    path('', include(router.urls)),  # Incluimos las rutas de la API
+    path('crear/', CrearVentaView.as_view(), name='crear_venta'),         # POST para crear una venta
+    path('mis-ventas/', MisVentasView.as_view(), name='mis_ventas'),      # GET para listar mis ventas
 ]
