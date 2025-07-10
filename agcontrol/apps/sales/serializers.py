@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from .models import venta, DetalleVenta
 
+
+# ajuste de logica de negocio para la venta 
+
+
+
 class ventaSerializer(serializers.ModelSerializer):
     class Meta:
         model = venta

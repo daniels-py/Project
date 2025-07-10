@@ -4,6 +4,7 @@ from .serializers import ventaSerializer, DetalleVentaSerializer
 
 # Create your views here.
 
+# Ajuste de lógica de negocio para la venta y detalle de venta mas segura
 
 class ventaListCreateView(viewsets.ModelViewSet):
     queryset = venta.objects.all()

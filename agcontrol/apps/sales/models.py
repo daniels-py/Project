@@ -3,6 +3,9 @@ from apps.products.models import Producto, CaracteristicaColor
 from apps.inventory.models import Inventario
 
 
+# mejorar y destilar para ver quien genera la venta
+
+
 class venta(models.Model):
     fecha = models.DateField(auto_now_add=True)
     total  = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
