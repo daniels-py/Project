@@ -1,19 +1,23 @@
-from rest_framework import viewsets
-from .models import venta, DetalleVenta
-from .serializers import ventaSerializer, DetalleVentaSerializer
+from rest_framework import generics, permissions
+from .models import Venta
+from .serializers import VentaSerializer
 
-# Create your views here.
 
-# Ajuste de lógica de negocio para la venta y detalle de venta mas segura
-
-class ventaListCreateView(viewsets.ModelViewSet):
-    queryset = venta.objects.all()
-    serializer_class = ventaSerializer
-
-class DetalleVentaListCreateView(viewsets.ModelViewSet):
-    queryset = DetalleVenta.objects.all()
-    serializer_class = DetalleVentaSerializer
+# Crear una venta con sus detalles
+class CrearVentaView(generics.CreateAPIView):
+    queryset = Venta.objects.all()
+    serializer_class = VentaSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        # Aquí puedes agregar lógica adicional antes de guardar el detalle de la venta
-        serializer.save()  # Guarda el detalle de la venta
+        # Asigna automáticamente el usuario que hace la venta
+        serializer.save(usuario=self.request.user)
+
+
+# Listar las ventas realizadas por el usuario autenticado
+class MisVentasView(generics.ListAPIView):
+    serializer_class = VentaSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Venta.objects.filter(usuario=self.request.user).order_by('-fecha')
