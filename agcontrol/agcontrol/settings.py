@@ -60,6 +60,7 @@ LOCAL_APPS = [
     'apps.products',
     'apps.inventory',
     'apps.core',
+    'apps.sales',  # Agregamos la app de ventas
 ]
 
 # esto es para unir todas las apps en una sola lista

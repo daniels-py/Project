@@ -25,6 +25,7 @@ urlpatterns = [
     path('core/', include('apps.core.urls')),# Incluimos las ulrs de core
     path('products/', include('apps.products.urls')),  # Incluimos las urls de la app products
     path('inventario/',include('apps.inventory.urls')),# uncluimos las urls de inventario
+    path('sales/', include('apps.sales.urls')),  # Incluimos las urls de la app sales
 ]
 
 
