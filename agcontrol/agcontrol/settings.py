@@ -67,7 +67,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
-#configuracion de django rest
+#configuracion de django rest para la asignacion de permisos y tokesn para mis usuarios
  
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -107,7 +107,7 @@ MIDDLEWARE = [
 ]
 
 # esto solo los voy a usar en desarrollo para en produccion
-# tendre que utilizar un array que los puertos para mas control
+# tendre que utilizar un array que los puertos para mas control en este casos solo es en desarrollo
 CORS_ALLOW_ALL_ORIGINS = True
 
 
