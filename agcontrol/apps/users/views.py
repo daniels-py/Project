@@ -6,7 +6,8 @@ from .serializers import UserSerializer  # Importamos el serializador del usuari
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import EmailLoginTokenSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
+from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
+
 
 # Obtener el modelo de usuario definido en models.py
 User = get_user_model()
@@ -49,20 +50,33 @@ class listUsers(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class EmailLoginTokenSerializer(TokenObtainPairView):
+
+# Vista para el login personalizado
+class EmailLoginView(TokenObtainPairView):
     serializer_class = EmailLoginTokenSerializer
 
-
-
+# vista para el logout
 class LogoutView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
+    # creamos un metodo para el logout 
     def post(self, request):
         try:
-            refresh_token = request.data.get("refresh")
+            refresh_token = request.data["refresh"]
             token = RefreshToken(refresh_token)
-            token.blacklist()  # Marca el token como revocado   
-            return Response({"message": "Logout exitoso"}, status=status.HTTP_205_RESET_CONTENT)
-        except Exception as e:
-            return Response({"error al cerrar": str(e)}, status=status.HTTP_400_BAD_REQUEST) 
+            token.blacklist()
+
+            
+            return Response({"detail": "Sesión cerrada correctamente."}, status=status.HTTP_205_RESET_CONTENT)
+        except KeyError:
+            return Response({"error": "No se proporcionó el token de actualización."}, status=status.HTTP_400_BAD_REQUEST)
+        except (TokenError, InvalidToken):
+            return Response({"error": "Token inválido o ya ha sido invalidado."}, status=status.HTTP_400_BAD_REQUEST)
        
+
+
+
+
+class EmailLoginTokenSerializer(TokenObtainPairView):
+    serializer_class = EmailLoginTokenSerializer
+

@@ -18,6 +18,11 @@ pip install django-cors-headers
 pip install pillow
 
 
+### instalar con los requerimientos
+
+pip install -r requirements.txt
+
+
 #### 2. Creacion de activiacion de entorno virtaul para windows y linux 
 
 
