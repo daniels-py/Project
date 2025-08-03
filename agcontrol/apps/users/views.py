@@ -75,8 +75,6 @@ class LogoutView(APIView):
        
 
 
-
-
 class EmailLoginTokenSerializer(TokenObtainPairView):
     serializer_class = EmailLoginTokenSerializer
 

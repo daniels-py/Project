@@ -55,10 +55,10 @@ class EmailLoginTokenSerializer(TokenObtainPairSerializer):
         if not user:
             raise serializers.ValidationError("Credenciales inválidas, verifica tu correo y contraseña.")
 
-        # ✅ Enviar correo aquí
+        # Enviar correo aquí
         send_mail(
             subject='Inicio de sesión exitoso',
-            message=f'Hola {user.username}, acabas de iniciar sesión en el sistema.',
+            message=f'Hola {user.username}, acabas de iniciar sesión en el sistema de prueba.',
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[user.email],  # o pon tu correo si quieres recibir tú la notificación
             fail_silently=False,

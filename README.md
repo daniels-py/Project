@@ -3,6 +3,9 @@
 readme_content = """# 📦 Proyecto Django - Punto de Venta e Inventario
 
 Bienvenido a tu sistema de gestión para categorías, marcas, productos, inventario, ventas y compras en Django + PostgreSQL.
+ 
+
+documentacion pendiente en gestor de base de datos
 
 ---
 
